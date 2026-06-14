@@ -5,7 +5,8 @@ const {
   approveSubmission, 
   rejectSubmission, 
   getAllUsers, 
-  getUserProgress 
+  getUserProgress,
+  forceAdvance
 } = require('../controllers/adminController');
 const { protect, adminOnly } = require('../middleware/authMiddleware');
 
@@ -17,5 +18,6 @@ router.put('/approve/:submissionId', approveSubmission);
 router.put('/reject/:submissionId', rejectSubmission);
 router.get('/users', getAllUsers);
 router.get('/user/:userId/progress', getUserProgress);
+router.post('/force-advance', forceAdvance);
 
 module.exports = router;

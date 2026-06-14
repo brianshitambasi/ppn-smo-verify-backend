@@ -97,3 +97,24 @@ module.exports = {
   getAllUsers, 
   getUserProgress 
 };
+
+// @desc    Manually trigger auto-advance job (for testing)
+// @route   POST /api/admin/force-advance
+const forceAdvance = async (req, res) => {
+  try {
+    const { autoAdvance } = require('../jobs/autoAdvance');
+    await autoAdvance();
+    res.json({ message: 'Auto-advance job executed manually' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { 
+  getPendingSubmissions, 
+  approveSubmission, 
+  rejectSubmission, 
+  getAllUsers, 
+  getUserProgress,
+  forceAdvance
+};
